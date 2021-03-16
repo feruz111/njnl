@@ -1,0 +1,22 @@
+.buttonWrapper{
+    padding-left: 10px;
+    display: flex;
+}
+
+.countWrapper{
+    background-color: #66b3ff;
+    margin: 9px;
+
+}
+
+.countFive{
+    color: #ff0000;
+}
+
+.buttonDisabled{
+    background-color: teal;
+}
+
+button{
+    background-color:#9999ff;
+}
