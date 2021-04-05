@@ -24,6 +24,7 @@
 .countWrapper {
     border: white 2px solid;
     padding: 30px;
+    font-size: 35px;
 }
 
 .countFive {
@@ -43,5 +44,8 @@ button {
 
 .secondButton{
     margin-left: 50px;
+}
+.error{
+  color: red;
 }
 

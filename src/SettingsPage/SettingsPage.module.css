@@ -58,3 +58,6 @@ input {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+.inputError{
+  background-color: red;
+}

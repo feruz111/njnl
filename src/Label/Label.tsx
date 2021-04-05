@@ -8,6 +8,10 @@ type PropsType = {
   maxValue: number;
   minValue: number;
   setCountMin: (a: number) => void;
+  setError: (a: boolean) => void;
+  editMode: boolean
+  error: boolean
+
 };
 
 function Label(props: PropsType) {
@@ -36,24 +40,26 @@ function Label(props: PropsType) {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.countWrapper}>
-        <div className={countClass}>{props.count}</div>
+      <div className={s.countWrapper}>{
+        props.error? <div className={s.error}>{"Incorrect value!"}</div> :
+        (props.editMode? <div>{"enter values and press 'set'"}</div>: <div className={countClass}>{props.count}</div>)
+        }
       </div>
       <div className={s.buttonWrapper}>
         <div className={s.firstButton}>
           <ButtonPage
             onClickHandler={onClickHandlerIncrement}
             content="inc"
-            disabled={disabledIncrement}
-            className={classIncrement}
+            disabled={props.editMode || disabledIncrement}
+            className={props.editMode ? s.buttonDisabled: classIncrement}
           />
         </div>
         <div className={s.secondButton}>
           <ButtonPage
             onClickHandler={onClickHandlerReset}
             content="reset"
-            disabled={disabledReset}
-            className={classReset}
+            disabled={props.editMode || disabledReset}
+            className={props.editMode ? s.buttonDisabled: classReset}
           />
         </div>
       </div>
