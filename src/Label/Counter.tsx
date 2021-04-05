@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import ButtonPage from "../Button/ButtonPage";
-import s from "./Label.module.css";
+import s from "./Counter.module.css";
 
 type PropsType = {
   setCount: (a: number) => void;
@@ -14,7 +14,7 @@ type PropsType = {
 
 };
 
-function Label(props: PropsType) {
+function Counter(props: PropsType) {
   let disabledIncrement = props.count >= props.maxValue;
 
   let disabledReset = props.count === props.minValue;
@@ -67,4 +67,4 @@ function Label(props: PropsType) {
   );
 }
 
-export default Label;
+export default Counter;
