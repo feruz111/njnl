@@ -1,8 +1,9 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useEffect } from "react";
 import {
   maxValueSetAC,
   minValueSetAC,
   setEditModeAC,
+  setErrorAC,
   setValueAC,
 } from "../bll/count-reducer";
 import ButtonPage from "../Button/ButtonPage";
@@ -11,39 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppStateType } from "../bll/store";
 
 function SettingsPage() {
-  const { minValue, maxValue } = useSelector(
+  const { minValue, maxValue,error } = useSelector(
     (state: AppStateType) => state.count
   );
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //     let asString = localStorage.getItem("max");
-  //     if (asString) {
-  //         let newValue = JSON.parse(asString);
-  //         setMaxValue(newValue);
-  //     }
-  // }, []);
-  // useEffect(() => {
-  //     let asString = localStorage.getItem("min");
-  //     if (asString) {
-  //         let newValue = JSON.parse(asString);
-  //         setMinValue(newValue);
-  //     }
-  // }, []);
-
-  // useEffect(() => {
-  //     localStorage.setItem("max", JSON.stringify(maxValue));
-  // }, [maxValue]);
-  // useEffect(() => {
-  //     localStorage.setItem("min", JSON.stringify(minValue));
-  // }, [minVal ue]);
-
-  let minDisabled = minValue < 0 || minValue === maxValue;
-  let maxDisabled = maxValue < 0 || minValue === maxValue;
+  let minDisabled =
+    minValue < 0 || minValue === maxValue || maxValue <= minValue;
+  let maxDisabled =
+    maxValue < 0 || minValue === maxValue || maxValue <= minValue;
 
   let disable = maxValue <= minValue || minValue < 0 || maxValue < 0;
-
+  
   let onMaxChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEditModeAC(true));
     dispatch(maxValueSetAC(parseInt(e.currentTarget.value)));
@@ -59,10 +40,16 @@ function SettingsPage() {
   };
 
   const onSetChange = () => {
-    disable = true;
     dispatch(setEditModeAC(false));
     dispatch(setValueAC(minValue));
+    disable = true;
   };
+
+  useEffect(() => {
+    if (minDisabled || maxDisabled) {
+      dispatch(setErrorAC(true));
+    } else dispatch(setErrorAC(false));
+  }, [minValue, maxValue]);
 
   return (
     <div className={s.wrapper}>
@@ -95,7 +82,7 @@ function SettingsPage() {
           <ButtonPage
             content={"set"}
             disabled={disable}
-            className={disable && "" ? s.setButtonDisabled : s.setButton}
+            className={error || disable && "" ? s.setButtonDisabled : s.setButton}
             onClickHandler={onSetChange}
           />
         </div>

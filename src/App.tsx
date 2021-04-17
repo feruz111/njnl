@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
-import { setValueTC } from "./bll/count-reducer";
 import Counter from "./Label/Counter";
 import SettingsPage from "./SettingsPage/SettingsPage";
 

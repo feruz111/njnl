@@ -2,7 +2,7 @@ import { AppStateType } from "../bll/store";
 
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem("counterValue");
+    const serializedState = localStorage.getItem("value");
     if (serializedState === null) {
       return undefined;
     }
@@ -12,10 +12,10 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state: AppStateType) => {
+export const saveStateCount = (state: AppStateType) => {
   try {
     const serializedState = JSON.stringify(state);
-    localStorage.setItem("counterValue", serializedState);
+    localStorage.setItem("value", serializedState);
   } catch {
     // ignore write errors
   }

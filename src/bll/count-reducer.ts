@@ -95,25 +95,24 @@ type ActionType =
   | SetValueActionType;
 
 // THUNKS
-
-export const incCountTC = (value: number) => {
-  return (dispatch: Dispatch) => {
-    localStorage.setItem("countValue", JSON.stringify(value+1));
-    dispatch(incCountAC());
-  };
-};
-export const setValueTC = () => {
-  return (dispatch: Dispatch) => {
-    let asString = localStorage.getItem("countValue");
-    if (asString) {
-      let newValue = JSON.parse(asString);
-      dispatch(setValueAC(newValue));
-    }
-  };
-};
-export const resetCountTC = (value: number) => {
-  return (dispatch: Dispatch) => {
-    localStorage.setItem("countValue", JSON.stringify(value));
-    dispatch(resetCountAC(value));
-  };
-};
+// export const incCountTC = (value: number) => {
+//   return (dispatch: Dispatch) => {
+//     localStorage.setItem("countValue", JSON.stringify(value+1));
+//     dispatch(incCountAC());
+//   };
+// };
+// export const setValueTC = () => {
+//   return (dispatch: Dispatch) => {
+//     let asString = localStorage.getItem("countValue");
+//     if (asString) {
+//       let newValue = JSON.parse(asString);
+//       dispatch(setValueAC(newValue));
+//     }
+//   };
+// };
+// export const resetCountTC = (value: number) => {
+//   return (dispatch: Dispatch) => {
+//     localStorage.setItem("countValue", JSON.stringify(value));
+//     dispatch(resetCountAC(value));
+//   };
+// };

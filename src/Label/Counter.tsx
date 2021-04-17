@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  incCountTC,
-  resetCountTC,
-  setValueTC,
-} from "../bll/count-reducer";
+import { incCountAC, resetCountAC, setValueAC } from "../bll/count-reducer";
 import { AppStateType } from "../bll/store";
 import ButtonPage from "../Button/ButtonPage";
 import s from "./Counter.module.css";
@@ -15,10 +11,6 @@ function Counter() {
   );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(setValueTC());
-  }, []);
 
   let disabledIncrement = value >= maxValue;
 
@@ -33,12 +25,12 @@ function Counter() {
 
   const onClickHandlerIncrement = () => {
     if (value < maxValue) {
-      dispatch(incCountTC(value));
+      dispatch(incCountAC());
     }
   };
 
   const onClickHandlerReset = () => {
-    dispatch(resetCountTC(minValue));
+    dispatch(resetCountAC(minValue));
   };
 
   return (
@@ -58,7 +50,7 @@ function Counter() {
             onClickHandler={onClickHandlerIncrement}
             content="inc"
             disabled={editMode || disabledIncrement}
-            className={editMode ? s.buttonDisabled : classIncrement}
+            className={editMode || disabledIncrement ? s.buttonDisabled : classIncrement}
           />
         </div>
         <div className={s.secondButton}>
