@@ -6,11 +6,6 @@ import SettingsPage from "./SettingsPage/SettingsPage";
 
 function App() {
 
-
-  //   useEffect(() => {
-  //     localStorage.setItem("countValue", JSON.stringify(count));
-  //   }, [count]);
-
   return (
     <div className="App">
       <SettingsPage />
